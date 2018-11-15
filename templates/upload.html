@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <h1 align="center">Cloud Project 1</h1>
+    <h3>Upload a file</h3>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body bgcolor="#E6E6FA">
+    <div class="bg-img">
+        <tr>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit" class="button" onclick="javascript: form.action='{{ url_for('uploader') }}';" name="upload" value="upload" />
+                <br><br/>
+                <input type="submit" class="button" onclick="javascript: form.action='{{ url_for('properties',filename=files) }}';" name="properties" value="File Details" " />
+            </form>
+        </tr>
+        <tr>
+            <td>
+               
+            </td>
+            <td>
+                <form method="POST " enctype="multipart/form-data ">
+                    <input type="submit " class="button " onclick="javascript: form.action='{{ url_for(' delete ',filename=files) }}'; " name="delete " value="delete file " />
+                </form>
+            </td>
+            <td> <input type="checkbox " class="toggle "> </td>
+        </tr>
+    </div>
+    <a href="{{ url_for( 'uploaded',filename=files) }} " target="_blank ">{{ files }}</a>
+    <p>properties are</p>
+    {% for props in prop %} {{ props }}
+    <label>is   :</label> {{ prop[props] }} <br> {% endfor %}
+</body>
+</html>
